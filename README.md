@@ -58,14 +58,6 @@ Para mantenerlo liviano **no incluye las carpetas de plataforma**
    flutter run
    ```
 
-   O presiona **F5** en VS Code con el plugin de Flutter instalado.
-
-### Ejecutar la prueba (opcional)
-
-```bash
-flutter test
-```
-
 ---
 
 ## Estructura del proyecto
@@ -89,14 +81,3 @@ lib/
     ├── medicamento_card.dart       Tarjeta de medicamento
     └── stock_badge.dart            Etiqueta de estado de stock
 ```
-
----
-
-## Nota sobre el manejo de datos
-
-No se usa ninguna base de datos. El archivo `services/inventario_store.dart`
-contiene una clase `InventarioStore` que extiende `ChangeNotifier` (incluido en
-Flutter) y guarda los medicamentos y movimientos en listas en memoria. La
-interfaz escucha estos cambios con `ListenableBuilder` y se actualiza
-automáticamente. Al cerrar la app, los datos vuelven a su estado inicial de
-ejemplo.
