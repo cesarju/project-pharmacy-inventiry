@@ -1,0 +1,24 @@
+# Archivos generados por Dart/Flutter
+.dart_tool/
+.packages
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+pubspec.lock
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Plataforma (se regeneran con: flutter create .)
+android/
+ios/
+web/
+linux/
+macos/
+windows/
+
+# Misc
+*.log
+.DS_Store
