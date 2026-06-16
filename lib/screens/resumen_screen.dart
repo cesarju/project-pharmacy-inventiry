@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import '../models/medicamento.dart';
 import '../services/inventario_store.dart';
 
-/// Pantalla de resumen: muestra estadisticas generales del inventario
-/// calculadas en memoria a partir de la lista de medicamentos.
 class ResumenScreen extends StatelessWidget {
   const ResumenScreen({super.key});
 
@@ -36,11 +34,13 @@ class ResumenScreen extends StatelessWidget {
                 mainAxisSpacing: 12,
                 childAspectRatio: 1.5,
                 children: [
-                  _metrica(theme, 'Medicamentos',
-                      '${store.totalMedicamentos}', Icons.medication,
-                      const Color(0xFF0F6E56)),
-                  _metrica(theme, 'Unidades totales',
-                      '${store.unidadesTotales}', Icons.inventory_2,
+                  _metrica(theme, 'Medicamentos', '${store.totalMedicamentos}',
+                      Icons.medication, const Color(0xFF0F6E56)),
+                  _metrica(
+                      theme,
+                      'Unidades totales',
+                      '${store.unidadesTotales}',
+                      Icons.inventory_2,
                       const Color(0xFF378ADD)),
                   _metrica(theme, 'Stock bajo', '${store.totalBajos}',
                       Icons.warning_amber_rounded, const Color(0xFFBA7517)),
@@ -95,7 +95,6 @@ class ResumenScreen extends StatelessWidget {
     );
   }
 
-  /// Lista la cantidad de unidades acumuladas por cada categoria.
   Widget _porCategoria(ThemeData theme, InventarioStore store) {
     // Suma las unidades en stock agrupadas por categoria (en memoria).
     final mapa = <Categoria, int>{};

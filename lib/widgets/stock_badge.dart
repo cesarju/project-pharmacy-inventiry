@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../models/medicamento.dart';
 
-/// Etiqueta de color que indica el estado del stock de un medicamento.
 class StockBadge extends StatelessWidget {
   const StockBadge({super.key, required this.estado});
 
@@ -11,8 +10,16 @@ class StockBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final (texto, color, icono) = switch (estado) {
-      EstadoStock.disponible => ('Disponible', const Color(0xFF1D9E75), Icons.check_circle),
-      EstadoStock.bajo => ('Stock bajo', const Color(0xFFBA7517), Icons.warning_amber_rounded),
+      EstadoStock.disponible => (
+          'Disponible',
+          const Color(0xFF1D9E75),
+          Icons.check_circle
+        ),
+      EstadoStock.bajo => (
+          'Stock bajo',
+          const Color(0xFFBA7517),
+          Icons.warning_amber_rounded
+        ),
       EstadoStock.agotado => ('Agotado', const Color(0xFFA32D2D), Icons.cancel),
     };
 

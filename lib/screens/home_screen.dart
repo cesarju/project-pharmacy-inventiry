@@ -4,10 +4,6 @@ import 'inventario_screen.dart';
 import 'movimientos_screen.dart';
 import 'resumen_screen.dart';
 
-/// Pantalla contenedora con la barra de navegacion inferior.
-///
-/// Permite moverse entre las tres secciones principales de la app:
-/// Inventario, Movimientos y Resumen.
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -18,7 +14,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _indice = 0;
 
-  // Pantallas asociadas a cada pestana de la barra inferior.
   static const _pantallas = <Widget>[
     InventarioScreen(),
     MovimientosScreen(),

@@ -6,9 +6,6 @@ void main() {
   runApp(const FarmaciaApp());
 }
 
-/// Aplicacion de Control de Inventario de Farmacia.
-///
-/// Funciona completamente sin conexion: los datos viven en memoria.
 class FarmaciaApp extends StatelessWidget {
   const FarmaciaApp({super.key});
 

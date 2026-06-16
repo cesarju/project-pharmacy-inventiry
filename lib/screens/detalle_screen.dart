@@ -5,8 +5,6 @@ import '../services/inventario_store.dart';
 import '../widgets/stock_badge.dart';
 import 'form_medicamento_screen.dart';
 
-/// Pantalla de detalle de un medicamento.
-/// Permite dispensar (descontar stock), ingresar stock, editar y eliminar.
 class DetalleScreen extends StatelessWidget {
   const DetalleScreen({super.key, required this.medicamento});
 
@@ -39,7 +37,6 @@ class DetalleScreen extends StatelessWidget {
           ),
         ],
       ),
-      // Escucha el store para refrescar el stock tras cada movimiento.
       body: ListenableBuilder(
         listenable: inventarioStore,
         builder: (context, _) {
@@ -86,8 +83,6 @@ class DetalleScreen extends StatelessWidget {
       ),
     );
   }
-
-  // ----- SECCIONES -----
 
   Widget _encabezado(ThemeData theme) {
     return Row(
@@ -173,8 +168,6 @@ class DetalleScreen extends StatelessWidget {
       ),
     );
   }
-
-  // ----- ACCIONES -----
 
   /// Dialogo para pedir la cantidad a dispensar o ingresar.
   void _dialogoCantidad(BuildContext context, {required bool esSalida}) {

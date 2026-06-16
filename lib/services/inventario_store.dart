@@ -3,27 +3,18 @@ import 'package:flutter/foundation.dart';
 import '../models/medicamento.dart';
 import '../models/movimiento.dart';
 
-/// Opciones para filtrar la lista de medicamentos por estado.
 enum FiltroEstado { todos, disponibles, bajos, agotados }
 
-/// Almacen central de datos EN MEMORIA.
-///
-/// No usa base de datos ni internet: toda la informacion vive aqui mientras
-/// la app esta abierta. Extiende [ChangeNotifier] para avisar a la interfaz
-/// cuando los datos cambian (patron observador incorporado en Flutter).
 class InventarioStore extends ChangeNotifier {
   // Listas privadas que guardan el estado de la aplicacion.
   final List<Medicamento> _medicamentos = [];
   final List<Movimiento> _movimientos = [];
 
-  // Contador simple para generar identificadores unicos sin paquetes externos.
   int _contadorId = 0;
 
   InventarioStore() {
     _cargarDatosIniciales();
   }
-
-  // ----- LECTURA -----
 
   List<Medicamento> get medicamentos => List.unmodifiable(_medicamentos);
 
@@ -35,11 +26,8 @@ class InventarioStore extends ChangeNotifier {
 
   int get totalAgotados => _medicamentos.where((m) => m.estaAgotado).length;
 
-  int get unidadesTotales =>
-      _medicamentos.fold(0, (suma, m) => suma + m.stock);
+  int get unidadesTotales => _medicamentos.fold(0, (suma, m) => suma + m.stock);
 
-  /// Devuelve los medicamentos aplicando un filtro de estado y una busqueda
-  /// por nombre. Toda la logica de filtrado se resuelve en memoria.
   List<Medicamento> filtrar({
     FiltroEstado estado = FiltroEstado.todos,
     Categoria? categoria,
@@ -64,9 +52,6 @@ class InventarioStore extends ChangeNotifier {
     }).toList();
   }
 
-  // ----- ESCRITURA -----
-
-  /// Agrega un nuevo medicamento al inventario.
   void agregarMedicamento({
     required String nombre,
     required Categoria categoria,
@@ -87,7 +72,6 @@ class InventarioStore extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Actualiza los datos de un medicamento existente.
   void editarMedicamento(
     Medicamento medicamento, {
     required String nombre,
@@ -105,14 +89,11 @@ class InventarioStore extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Elimina un medicamento del inventario.
   void eliminarMedicamento(Medicamento medicamento) {
     _medicamentos.remove(medicamento);
     notifyListeners();
   }
 
-  /// Registra la dispensacion (salida) de un medicamento, descontando el
-  /// stock automaticamente. Devuelve true si la operacion fue posible.
   bool dispensar(
     Medicamento medicamento, {
     required int cantidad,
@@ -140,7 +121,6 @@ class InventarioStore extends ChangeNotifier {
     return true;
   }
 
-  /// Registra el ingreso de nuevas unidades, sumando al stock.
   void ingresarStock(
     Medicamento medicamento, {
     required int cantidad,
@@ -165,21 +145,66 @@ class InventarioStore extends ChangeNotifier {
     notifyListeners();
   }
 
-  // ----- AUXILIARES -----
-
   String _nuevoId() => 'id_${_contadorId++}';
 
-  /// Carga un conjunto de datos de ejemplo para que la app no inicie vacia.
   void _cargarDatosIniciales() {
     final ejemplos = <Map<String, Object>>[
-      {'n': 'Paracetamol 500mg', 'c': Categoria.analgesico, 's': 120, 'm': 30, 'l': 'Genfar'},
-      {'n': 'Ibuprofeno 400mg', 'c': Categoria.antiinflamatorio, 's': 18, 'm': 25, 'l': 'Bayer'},
-      {'n': 'Amoxicilina 500mg', 'c': Categoria.antibiotico, 's': 0, 'm': 20, 'l': 'MK'},
-      {'n': 'Loratadina 10mg', 'c': Categoria.antialergico, 's': 64, 'm': 15, 'l': 'Genfar'},
-      {'n': 'Omeprazol 20mg', 'c': Categoria.gastrointestinal, 's': 9, 'm': 20, 'l': 'Lafrancol'},
-      {'n': 'Vitamina C 1g', 'c': Categoria.vitamina, 's': 200, 'm': 40, 'l': 'Redoxon'},
-      {'n': 'Diclofenaco 50mg', 'c': Categoria.antiinflamatorio, 's': 45, 'm': 20, 'l': 'MK'},
-      {'n': 'Azitromicina 500mg', 'c': Categoria.antibiotico, 's': 12, 'm': 15, 'l': 'Pfizer'},
+      {
+        'n': 'Paracetamol 500mg',
+        'c': Categoria.analgesico,
+        's': 120,
+        'm': 30,
+        'l': 'Genfar'
+      },
+      {
+        'n': 'Ibuprofeno 400mg',
+        'c': Categoria.antiinflamatorio,
+        's': 18,
+        'm': 25,
+        'l': 'Bayer'
+      },
+      {
+        'n': 'Amoxicilina 500mg',
+        'c': Categoria.antibiotico,
+        's': 0,
+        'm': 20,
+        'l': 'MK'
+      },
+      {
+        'n': 'Loratadina 10mg',
+        'c': Categoria.antialergico,
+        's': 64,
+        'm': 15,
+        'l': 'Genfar'
+      },
+      {
+        'n': 'Omeprazol 20mg',
+        'c': Categoria.gastrointestinal,
+        's': 9,
+        'm': 20,
+        'l': 'Lafrancol'
+      },
+      {
+        'n': 'Vitamina C 1g',
+        'c': Categoria.vitamina,
+        's': 200,
+        'm': 40,
+        'l': 'Redoxon'
+      },
+      {
+        'n': 'Diclofenaco 50mg',
+        'c': Categoria.antiinflamatorio,
+        's': 45,
+        'm': 20,
+        'l': 'MK'
+      },
+      {
+        'n': 'Azitromicina 500mg',
+        'c': Categoria.antibiotico,
+        's': 12,
+        'm': 15,
+        'l': 'Pfizer'
+      },
     ];
 
     for (final e in ejemplos) {
@@ -197,6 +222,4 @@ class InventarioStore extends ChangeNotifier {
   }
 }
 
-/// Instancia unica (singleton) compartida por toda la aplicacion.
-/// Las pantallas escuchan este objeto para refrescarse automaticamente.
 final inventarioStore = InventarioStore();

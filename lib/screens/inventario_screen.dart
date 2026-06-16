@@ -74,8 +74,6 @@ class _InventarioScreenState extends State<InventarioScreen> {
     );
   }
 
-  // ----- SECCIONES DE LA INTERFAZ -----
-
   Widget _barraBusqueda() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
@@ -182,8 +180,6 @@ class _InventarioScreenState extends State<InventarioScreen> {
     );
   }
 
-  // ----- NAVEGACION Y ACCIONES -----
-
   void _abrirDetalle(Medicamento m) {
     Navigator.of(context).push(
       MaterialPageRoute(builder: (_) => DetalleScreen(medicamento: m)),
@@ -196,7 +192,6 @@ class _InventarioScreenState extends State<InventarioScreen> {
     );
   }
 
-  /// Muestra una hoja inferior para escoger la categoria a filtrar.
   void _elegirCategoria() {
     showModalBottomSheet<void>(
       context: context,
@@ -208,7 +203,8 @@ class _InventarioScreenState extends State<InventarioScreen> {
               const Padding(
                 padding: EdgeInsets.all(16),
                 child: Text('Filtrar por categoría',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
               ),
               ListTile(
                 leading: const Icon(Icons.clear_all),
@@ -222,9 +218,8 @@ class _InventarioScreenState extends State<InventarioScreen> {
                 ListTile(
                   leading: Icon(c.icono, color: c.color),
                   title: Text(c.label),
-                  trailing: _filtroCategoria == c
-                      ? const Icon(Icons.check)
-                      : null,
+                  trailing:
+                      _filtroCategoria == c ? const Icon(Icons.check) : null,
                   onTap: () {
                     setState(() => _filtroCategoria = c);
                     Navigator.pop(context);

@@ -3,9 +3,6 @@ import 'package:flutter/material.dart';
 import '../models/medicamento.dart';
 import '../services/inventario_store.dart';
 
-/// Formulario para AGREGAR un nuevo medicamento o EDITAR uno existente.
-///
-/// Si se recibe [medicamento], el formulario funciona en modo edicion.
 class FormMedicamentoScreen extends StatefulWidget {
   const FormMedicamentoScreen({super.key, this.medicamento});
 
@@ -130,7 +127,8 @@ class _FormMedicamentoScreenState extends State<FormMedicamentoScreen> {
             FilledButton.icon(
               onPressed: _guardar,
               icon: const Icon(Icons.save),
-              label: Text(_esEdicion ? 'Guardar cambios' : 'Agregar al inventario'),
+              label: Text(
+                  _esEdicion ? 'Guardar cambios' : 'Agregar al inventario'),
               style: FilledButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 14),
               ),
@@ -141,7 +139,6 @@ class _FormMedicamentoScreenState extends State<FormMedicamentoScreen> {
     );
   }
 
-  /// Valida que el texto sea un numero entero igual o mayor que cero.
   String? _validarEntero(String? v) {
     if (v == null || v.trim().isEmpty) return 'Requerido';
     final n = int.tryParse(v.trim());
@@ -150,7 +147,6 @@ class _FormMedicamentoScreenState extends State<FormMedicamentoScreen> {
     return null;
   }
 
-  /// Guarda el medicamento (nuevo o editado) en el store en memoria.
   void _guardar() {
     if (!_formKey.currentState!.validate()) return;
 
@@ -159,7 +155,6 @@ class _FormMedicamentoScreenState extends State<FormMedicamentoScreen> {
     final minimo = int.parse(_minimoCtrl.text.trim());
     final lab = _laboratorioCtrl.text;
 
-    // Capturamos los objetos de navegacion antes de cerrar la pantalla.
     final navigator = Navigator.of(context);
     final messenger = ScaffoldMessenger.of(context);
 
@@ -185,9 +180,8 @@ class _FormMedicamentoScreenState extends State<FormMedicamentoScreen> {
     navigator.pop();
     messenger.showSnackBar(
       SnackBar(
-        content: Text(_esEdicion
-            ? 'Medicamento actualizado'
-            : 'Medicamento agregado'),
+        content: Text(
+            _esEdicion ? 'Medicamento actualizado' : 'Medicamento agregado'),
       ),
     );
   }

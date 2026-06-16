@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import '../models/movimiento.dart';
 import '../services/inventario_store.dart';
 
-/// Pantalla que muestra el historial de movimientos (dispensaciones e
-/// ingresos) registrados durante el uso de la app.
 class MovimientosScreen extends StatelessWidget {
   const MovimientosScreen({super.key});
 
@@ -95,7 +93,6 @@ class MovimientosScreen extends StatelessWidget {
     );
   }
 
-  /// Da formato legible a la fecha sin usar paquetes externos.
   String _formatearFecha(DateTime f) {
     String dos(int n) => n.toString().padLeft(2, '0');
     return '${dos(f.day)}/${dos(f.month)}/${f.year}  ${dos(f.hour)}:${dos(f.minute)}';

@@ -8,8 +8,6 @@ enum TipoMovimiento {
 }
 
 /// Registra un cambio en el stock de un medicamento (salida o ingreso).
-///
-/// Sirve para construir el historial de movimientos en memoria.
 class Movimiento {
   Movimiento({
     required this.id,

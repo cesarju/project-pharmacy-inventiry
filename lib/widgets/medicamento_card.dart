@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../models/medicamento.dart';
 import 'stock_badge.dart';
 
-/// Tarjeta que representa un medicamento dentro de la lista del inventario.
 class MedicamentoCard extends StatelessWidget {
   const MedicamentoCard({
     super.key,
@@ -27,7 +26,6 @@ class MedicamentoCard extends StatelessWidget {
           padding: const EdgeInsets.all(14),
           child: Row(
             children: [
-              // Icono de la categoria con su color caracteristico.
               Container(
                 width: 48,
                 height: 48,
@@ -41,7 +39,6 @@ class MedicamentoCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 14),
-              // Nombre, categoria y laboratorio.
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,7 +64,6 @@ class MedicamentoCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 8),
-              // Cantidad en stock.
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
