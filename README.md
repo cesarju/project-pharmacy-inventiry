@@ -81,3 +81,11 @@ lib/
     ├── medicamento_card.dart       Tarjeta de medicamento
     └── stock_badge.dart            Etiqueta de estado de stock
 ```
+
+<img width="488" height="933" alt="image" src="https://github.com/user-attachments/assets/59755fdd-a74b-493f-8de8-79a8bfb75abb" />
+<img width="488" height="933" alt="image" src="https://github.com/user-attachments/assets/7b897e8c-7524-4e7d-9f09-a630177b2e7d" />
+<img width="488" height="933" alt="image" src="https://github.com/user-attachments/assets/3b969840-ad6b-4a5e-b6a5-1b9593ef17ea" />
+<img width="488" height="933" alt="image" src="https://github.com/user-attachments/assets/524ab40e-ce74-4442-a01f-9d6a5aac1866" />
+
+
+
